@@ -4,7 +4,7 @@ import (
 	"context"
 	"time"
 
-	cid "github.com/ipfs/go-cid"
+	cid "gx/ipfs/QmTbxNB1NwDesLmKTscr4udL2tVP7MaxvXnD1D9yX7g3PN/go-cid"
 )
 
 // PubFunc is the user-defined function that determines exactly what
