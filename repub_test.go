@@ -5,8 +5,8 @@ import (
 	"testing"
 	"time"
 
+	cid "github.com/ipfs/go-cid"
 	ci "github.com/libp2p/go-libp2p-testing/ci"
-	cid "gx/ipfs/QmTbxNB1NwDesLmKTscr4udL2tVP7MaxvXnD1D9yX7g3PN/go-cid"
 )
 
 func TestRepublisher(t *testing.T) {

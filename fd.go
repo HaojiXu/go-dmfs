@@ -4,11 +4,11 @@ import (
 	"fmt"
 	"io"
 
-	mod "gx/ipfs/QmVmueix5wxmr8UWpfpcKw6F1xT7T8AS7CXQRM37BE29eX/go-unixfs/mod"
+	mod "github.com/ipfs/go-unixfs/mod"
 
 	context "context"
 
-	ipld "gx/ipfs/QmZ6nzCLwGLVfRzYLpD7pW6UNuBDKEcA2imJtVpbEx2rxy/go-ipld-format"
+	ipld "github.com/ipfs/go-ipld-format"
 )
 
 type state uint8

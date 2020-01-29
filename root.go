@@ -9,11 +9,11 @@ import (
 	"fmt"
 	"time"
 
-	ft "gx/ipfs/QmVmueix5wxmr8UWpfpcKw6F1xT7T8AS7CXQRM37BE29eX/go-unixfs"
-	dag "gx/ipfs/QmY6UwsN3D6uoxrRkYpJ8Wos8R66gwLmdn3wy7jM7CCRQ1/go-merkledag"
+	dag "github.com/ipfs/go-merkledag"
+	ft "github.com/ipfs/go-unixfs"
 
-	ipld "gx/ipfs/QmZ6nzCLwGLVfRzYLpD7pW6UNuBDKEcA2imJtVpbEx2rxy/go-ipld-format"
-	logging "gx/ipfs/QmbkT7eMTyXfpeyB3ZMxxcxg7XH8t6uXp49jqzz4HB7BGF/go-log"
+	ipld "github.com/ipfs/go-ipld-format"
+	logging "github.com/ipfs/go-log"
 )
 
 // TODO: Remove if not used.

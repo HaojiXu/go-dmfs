@@ -5,12 +5,12 @@ import (
 	"fmt"
 	"sync"
 
-	ft "gx/ipfs/QmVmueix5wxmr8UWpfpcKw6F1xT7T8AS7CXQRM37BE29eX/go-unixfs"
-	mod "gx/ipfs/QmVmueix5wxmr8UWpfpcKw6F1xT7T8AS7CXQRM37BE29eX/go-unixfs/mod"
-	dag "gx/ipfs/QmY6UwsN3D6uoxrRkYpJ8Wos8R66gwLmdn3wy7jM7CCRQ1/go-merkledag"
+	dag "github.com/ipfs/go-merkledag"
+	ft "github.com/ipfs/go-unixfs"
+	mod "github.com/ipfs/go-unixfs/mod"
 
-	chunker "gx/ipfs/QmYmZ81dU5nnmBFy5MmktXLZpt8QCWhRJd6M1uxVF6vke8/go-ipfs-chunker"
-	ipld "gx/ipfs/QmZ6nzCLwGLVfRzYLpD7pW6UNuBDKEcA2imJtVpbEx2rxy/go-ipld-format"
+	chunker "github.com/ipfs/go-ipfs-chunker"
+	ipld "github.com/ipfs/go-ipld-format"
 )
 
 // File represents a file in the MFS, its logic its mainly targeted
