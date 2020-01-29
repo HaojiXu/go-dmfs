@@ -1,10 +1,10 @@
 {
-  "author": "hsanjuan",
+  "author": "hsanjuan, haojixu",
   "bugs": {
-    "url": "https://github.com/ipfs/go-mfs"
+    "url": "https://github.com/HaojiXu/go-dmfs"
   },
   "gx": {
-    "dvcsimport": "github.com/ipfs/go-mfs"
+    "dvcsimport": "github.com/HaojiXu/go-dmfs"
   },
   "gxDependencies": [
     {
@@ -41,7 +41,7 @@
   "gxVersion": "0.12.1",
   "language": "go",
   "license": "MIT",
-  "name": "go-mfs",
+  "name": "go-dmfs",
   "releaseCmd": "git commit -a -m \"gx publish $VERSION\"",
   "version": "0.1.54"
 }

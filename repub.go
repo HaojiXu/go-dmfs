@@ -1,4 +1,4 @@
-package mfs
+package dmfs
 
 import (
 	"context"
@@ -9,7 +9,7 @@ import (
 
 // PubFunc is the user-defined function that determines exactly what
 // logic entails "publishing" a `Cid` value.
-type PubFunc func(context.Context, cid.Cid) error
+type PubFunc func(context.Context, cid.Cid, string) error
 
 // Republisher manages when to publish a given entry.
 type Republisher struct {
@@ -23,11 +23,12 @@ type Republisher struct {
 
 	ctx    context.Context
 	cancel func()
+	name   string
 }
 
 // NewRepublisher creates a new Republisher object to republish the given root
 // using the given short and long time intervals.
-func NewRepublisher(ctx context.Context, pf PubFunc, tshort, tlong time.Duration) *Republisher {
+func NewRepublisher(ctx context.Context, pf PubFunc, tshort, tlong time.Duration, name string) *Republisher {
 	ctx, cancel := context.WithCancel(ctx)
 	return &Republisher{
 		TimeoutShort:     tshort,
@@ -38,6 +39,7 @@ func NewRepublisher(ctx context.Context, pf PubFunc, tshort, tlong time.Duration
 		immediatePublish: make(chan chan struct{}),
 		ctx:              ctx,
 		cancel:           cancel,
+		name:             name,
 	}
 }
 
@@ -58,6 +60,7 @@ func (rp *Republisher) WaitPub(ctx context.Context) error {
 	}
 }
 
+// Close republisher.
 func (rp *Republisher) Close() error {
 	// TODO(steb): Wait for `Run` to stop
 	err := rp.WaitPub(rp.ctx)
@@ -170,7 +173,7 @@ func (rp *Republisher) Run(lastPublished cid.Cid) {
 		// 2. If we have a value to publish, publish it now.
 		if toPublish.Defined() {
 			for {
-				err := rp.pubfunc(rp.ctx, toPublish)
+				err := rp.pubfunc(rp.ctx, toPublish, rp.name)
 				if err == nil {
 					break
 				}

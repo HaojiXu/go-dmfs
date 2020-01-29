@@ -1,4 +1,4 @@
-package mfs
+package dmfs
 
 import (
 	"context"
@@ -18,7 +18,7 @@ func TestRepublisher(t *testing.T) {
 
 	pub := make(chan struct{})
 
-	pf := func(ctx context.Context, c cid.Cid) error {
+	pf := func(ctx context.Context, c cid.Cid, name string) error {
 		pub <- struct{}{}
 		return nil
 	}
@@ -29,7 +29,7 @@ func TestRepublisher(t *testing.T) {
 	tshort := time.Millisecond * 50
 	tlong := time.Second / 2
 
-	rp := NewRepublisher(ctx, pf, tshort, tlong)
+	rp := NewRepublisher(ctx, pf, tshort, tlong, "/local/filesroot")
 	go rp.Run(cid.Undef)
 
 	rp.Update(testCid1)

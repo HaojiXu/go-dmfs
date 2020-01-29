@@ -1,7 +1,7 @@
 // package mfs implements an in memory model of a mutable IPFS filesystem.
 // TODO: Develop on this line (and move it to `doc.go`).
 
-package mfs
+package dmfs
 
 import (
 	"context"
@@ -87,8 +87,7 @@ func IsFile(fsn FSNode) bool {
 type Root struct {
 
 	// Root directory of the MFS layout.
-	dir *Directory
-
+	dir   *Directory
 	repub *Republisher
 }
 
@@ -97,7 +96,7 @@ func NewRoot(parent context.Context, ds ipld.DAGService, node *dag.ProtoNode, pf
 
 	var repub *Republisher
 	if pf != nil {
-		repub = NewRepublisher(parent, pf, time.Millisecond*300, time.Second*3)
+		repub = NewRepublisher(parent, pf, time.Millisecond*300, time.Second*3, "/local/filesroot")
 
 		// No need to take the lock here since we just created
 		// the `Republisher` and no one has access to it yet.
@@ -108,6 +107,49 @@ func NewRoot(parent context.Context, ds ipld.DAGService, node *dag.ProtoNode, pf
 	root := &Root{
 		repub: repub,
 	}
+
+	fsn, err := ft.FSNodeFromBytes(node.Data())
+	if err != nil {
+		log.Error("IPNS pointer was not unixfs node")
+		// TODO: IPNS pointer?
+		return nil, err
+	}
+
+	switch fsn.Type() {
+	case ft.TDirectory, ft.THAMTShard:
+		newDir, err := NewDirectory(parent, node.String(), node, root, ds)
+		if err != nil {
+			return nil, err
+		}
+
+		root.dir = newDir
+	case ft.TFile, ft.TMetadata, ft.TRaw:
+		return nil, fmt.Errorf("root can't be a file (unixfs type: %s)", fsn.Type())
+		// TODO: This special error reporting case doesn't seem worth it, we either
+		// have a UnixFS directory or we don't.
+	default:
+		return nil, fmt.Errorf("unrecognized unixfs type: %s", fsn.Type())
+	}
+	return root, nil
+}
+
+// NewDynamicRoot creates a new dynamic root with the object name.
+func NewDynamicRoot(parent context.Context, ds ipld.DAGService, node *dag.ProtoNode, pf PubFunc, name string) (*Root, error) {
+
+	var repub *Republisher
+	if pf != nil {
+		repub = NewRepublisher(parent, pf, time.Millisecond*300, time.Second*3, name)
+
+		// No need to take the lock here since we just created
+		// the `Republisher` and no one has access to it yet.
+
+		go repub.Run(node.Cid())
+	}
+
+	root := &Root{
+		repub: repub,
+	}
+	//TODO
 
 	fsn, err := ft.FSNodeFromBytes(node.Data())
 	if err != nil {

@@ -1,4 +1,4 @@
-package mfs
+package dmfs
 
 import (
 	ipld "github.com/ipfs/go-ipld-format"

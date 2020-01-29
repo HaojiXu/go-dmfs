@@ -1,4 +1,4 @@
-package mfs
+package dmfs
 
 import (
 	"bytes"
@@ -206,8 +206,8 @@ func setupRoot(ctx context.Context, t *testing.T) (ipld.DAGService, *Root) {
 	ds := getDagserv(t)
 
 	root := emptyDirNode()
-	rt, err := NewRoot(ctx, ds, root, func(ctx context.Context, c cid.Cid) error {
-		fmt.Println("PUBLISHED: ", c)
+	rt, err := NewRoot(ctx, ds, root, func(ctx context.Context, c cid.Cid, name string) error {
+		fmt.Println("PUBLISHED ("+name+"): ", c)
 		return nil
 	})
 
@@ -252,7 +252,6 @@ func TestMkdir(t *testing.T) {
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 	_, rt := setupRoot(ctx, t)
-
 	rootdir := rt.GetDirectory()
 
 	dirsToMake := []string{"a", "B", "foo", "bar", "cats", "fish"}

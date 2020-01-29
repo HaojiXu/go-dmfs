@@ -1,4 +1,4 @@
-package mfs
+package dmfs
 
 type Flags struct {
 	Read  bool
