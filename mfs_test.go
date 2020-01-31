@@ -15,22 +15,22 @@ import (
 	"testing"
 	"time"
 
-	path "gx/ipfs/QmUquHAkyh9phs4ojSuHcHcZnUMGDwDNJZWnRXkNks1qLB/go-path"
+	path "github.com/ipfs/go-path"
 
-	bserv "gx/ipfs/QmTRbLgKn2BKNvr9z5JQ3uZC4FSyLkad9t7qTVPkbH1LRB/go-blockservice"
-	ft "gx/ipfs/QmVmueix5wxmr8UWpfpcKw6F1xT7T8AS7CXQRM37BE29eX/go-unixfs"
-	importer "gx/ipfs/QmVmueix5wxmr8UWpfpcKw6F1xT7T8AS7CXQRM37BE29eX/go-unixfs/importer"
-	uio "gx/ipfs/QmVmueix5wxmr8UWpfpcKw6F1xT7T8AS7CXQRM37BE29eX/go-unixfs/io"
-	dag "gx/ipfs/QmY6UwsN3D6uoxrRkYpJ8Wos8R66gwLmdn3wy7jM7CCRQ1/go-merkledag"
+	bserv "github.com/ipfs/go-blockservice"
+	dag "github.com/ipfs/go-merkledag"
+	ft "github.com/ipfs/go-unixfs"
+	importer "github.com/ipfs/go-unixfs/importer"
+	uio "github.com/ipfs/go-unixfs/io"
 
-	u "gx/ipfs/QmNohiVssaPw3KVLZik59DBVGTSm2dGvYT9eoXt5DQ36Yz/go-ipfs-util"
-	cid "gx/ipfs/QmTbxNB1NwDesLmKTscr4udL2tVP7MaxvXnD1D9yX7g3PN/go-cid"
-	ds "gx/ipfs/QmUadX5EcvrBmxAV9sE7wUWtWSqxns5K84qKJBixmcT1w9/go-datastore"
-	dssync "gx/ipfs/QmUadX5EcvrBmxAV9sE7wUWtWSqxns5K84qKJBixmcT1w9/go-datastore/sync"
-	bstore "gx/ipfs/QmXjKkjMDTtXAiLBwstVexofB8LeruZmE2eBd85GwGFFLA/go-ipfs-blockstore"
-	chunker "gx/ipfs/QmYmZ81dU5nnmBFy5MmktXLZpt8QCWhRJd6M1uxVF6vke8/go-ipfs-chunker"
-	ipld "gx/ipfs/QmZ6nzCLwGLVfRzYLpD7pW6UNuBDKEcA2imJtVpbEx2rxy/go-ipld-format"
-	offline "gx/ipfs/Qmb9fkAWgcyVRnFdXGqA6jcWGFj6q35oJjwRAYRhfEboGS/go-ipfs-exchange-offline"
+	cid "github.com/ipfs/go-cid"
+	ds "github.com/ipfs/go-datastore"
+	dssync "github.com/ipfs/go-datastore/sync"
+	bstore "github.com/ipfs/go-ipfs-blockstore"
+	chunker "github.com/ipfs/go-ipfs-chunker"
+	offline "github.com/ipfs/go-ipfs-exchange-offline"
+	u "github.com/ipfs/go-ipfs-util"
+	ipld "github.com/ipfs/go-ipld-format"
 )
 
 func emptyDirNode() *dag.ProtoNode {

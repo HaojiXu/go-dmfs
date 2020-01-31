@@ -1,7 +1,7 @@
 package dmfs
 
 import (
-	ipld "gx/ipfs/QmZ6nzCLwGLVfRzYLpD7pW6UNuBDKEcA2imJtVpbEx2rxy/go-ipld-format"
+	ipld "github.com/ipfs/go-ipld-format"
 )
 
 // inode abstracts the common characteristics of the MFS `File`

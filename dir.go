@@ -9,12 +9,12 @@ import (
 	"sync"
 	"time"
 
-	ft "gx/ipfs/QmVmueix5wxmr8UWpfpcKw6F1xT7T8AS7CXQRM37BE29eX/go-unixfs"
-	uio "gx/ipfs/QmVmueix5wxmr8UWpfpcKw6F1xT7T8AS7CXQRM37BE29eX/go-unixfs/io"
-	dag "gx/ipfs/QmY6UwsN3D6uoxrRkYpJ8Wos8R66gwLmdn3wy7jM7CCRQ1/go-merkledag"
+	dag "github.com/ipfs/go-merkledag"
+	ft "github.com/ipfs/go-unixfs"
+	uio "github.com/ipfs/go-unixfs/io"
 
-	cid "gx/ipfs/QmTbxNB1NwDesLmKTscr4udL2tVP7MaxvXnD1D9yX7g3PN/go-cid"
-	ipld "gx/ipfs/QmZ6nzCLwGLVfRzYLpD7pW6UNuBDKEcA2imJtVpbEx2rxy/go-ipld-format"
+	cid "github.com/ipfs/go-cid"
+	ipld "github.com/ipfs/go-ipld-format"
 )
 
 var ErrNotYetImplemented = errors.New("not yet implemented")
