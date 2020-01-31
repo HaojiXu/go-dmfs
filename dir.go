@@ -351,7 +351,8 @@ func (d *Directory) AddChild(name string, nd ipld.Node) error {
 	_, err := d.childUnsync(name)
 	if err == nil {
 		//return ErrDirExists
-		err := d.Unlink(name)
+		delete(d.entriesCache, name)
+		err = d.unixfsDir.RemoveChild(d.ctx, name)
 		if err != nil {
 			return err
 		}
